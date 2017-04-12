@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
+import { Router, Route, browerHistory } from 'react-router'
 import configureStore from '../configureStore'
 import AsyncApp from './AsyncApp'
 
@@ -9,7 +10,9 @@ export default class Root extends Component {
   render() {
     return (
       <Provider store={store}>
-        <AsyncApp />
+        <Router history={browerHistory}>
+        	<Route path="/" component={AsyncApp} />
+        </Router>
       </Provider>
     )
   }
