@@ -13,6 +13,15 @@ module.exports= {
         query: {
           presets: ['react', 'es2015']
         }
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader'],
+        exclude:/node_modules/
+      },
+      {
+        test: /\.(png|jpe?g)$/,
+        loader: 'url-loader?limit=40000'
       }
     ]
   },
