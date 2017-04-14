@@ -77,3 +77,61 @@ a:active {
 	line-height: 28px;
 	color: #fff;
 }
+.user-center {
+	display: flex;
+	align-items: center;
+	height: 50px;
+	background: #80bd01;
+	color: #fff;
+}
+.user-center .content {
+	flex: 1;
+	text-align: center;
+}
+.user-center .icon {
+	margin-right: 5px;
+}
+.user-center .icon a {
+	color: #fff;
+}
+.user-index .user-headimg {
+	width: 82px;
+	height: 82px;
+	background-size:82px 82px;
+	border-radius: 50%;
+}
+.user-index .headimg .headimg-item {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.user-index .headimg .name {
+	text-align: center;
+	margin-top: 5px;
+}
+.user-index .headimg .score {
+	text-align: center;
+	padding: 5px;
+}
+.user-index .headimg {
+	background: #87c701;
+	color: #fff;
+}
+.user-index .tab-nav {
+	display: flex;
+	background: #eee;
+	height: 40px;
+	align-items: flex-end;
+}
+.user-index .tab-nav div {
+	flex: 1;
+	text-align: center;
+	cursor: pointer;
+}
+.user-index .tab-nav div {
+	padding: 5px;
+}
+.user-index .tab-nav div.current {
+	border-bottom: 3px solid #80bd01;
+}

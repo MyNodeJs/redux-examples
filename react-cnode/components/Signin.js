@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Header from './Header'
+import { REQUEST_LOGIN_POSTS, RECEIVE_LOGIN_POSTS, requestLoginPosts, receiveLoginPosts, fetchLoginPosts } from '../actions'
 
 class Signin extends Component {
 	constructor(props) {
@@ -7,15 +9,24 @@ class Signin extends Component {
 	}
 
 	render() {
+		const { dispatch } = this.props
+
 		return (
 			<div>
 				<Header />
 				<div className="signin">
 					<div className="content">
 						<div className="text">
-							<input type="text" placeholder="Access Token" />
+							<input ref="accesstoken" type="text" placeholder="Access Token" />
 						</div>
-						<input type="button" className="btn" value="登录" />
+						<input onClick={() => {
+							dispatch(fetchLoginPosts(this.refs.accesstoken.value))
+							.then(function(res) {
+								this.context.router.push({
+									pathname: '/user/' + res.posts.loginname
+								})
+							}.bind(this))
+						}} type="button" className="btn" value="登录" />
 					</div>
 				</div>
 			</div>
@@ -23,4 +34,8 @@ class Signin extends Component {
 	}
 }
 
-export default Signin
+Signin.contextTypes = {
+    router: React.PropTypes.object.isRequired
+}
+
+export default connect()(Signin)

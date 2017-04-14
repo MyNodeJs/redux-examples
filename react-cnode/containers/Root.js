@@ -4,6 +4,7 @@ import { Router, Route, browserHistory } from 'react-router'
 import configureStore from '../configureStore'
 import AsyncApp from './AsyncApp'
 import Signin from '../components/Signin'
+import UserView from '../components/UserView'
 
 const store = configureStore()
 
@@ -14,6 +15,7 @@ export default class Root extends Component {
         <Router history={browserHistory}>
         	<Route path="/" component={AsyncApp} />
         	<Route path="/signin" component={Signin} />
+          <Route path="/user/:loginname" component={UserView} />
         </Router>
       </Provider>
     )

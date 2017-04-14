@@ -1,64 +1,59 @@
 import fetch from 'isomorphic-fetch'
 
-export const REQUEST_POSTS = 'REQUEST_POSTS'
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT'
-export const INVALIDATE_SUBREDDIT  = 'INVALIDATE_SUBREDDIT '
+export const REQUEST_LOGIN_POSTS = 'REQUEST_LOGIN_POSTS'
+export const RECEIVE_LOGIN_POSTS = 'RECEIVE_LOGIN_POSTS'
+export const REQUEST_USER_GET = 'REQUEST_USER_GET'
+export const RECEIVE_USER_GET = 'RECEIVE_USER_GET'
 
-export function selectSubreddit(subreddit) {
+export function requestLoginPosts(accesstoken) {
   return {
-    type: SELECT_SUBREDDIT,
-    subreddit
+    type: REQUEST_LOGIN_POSTS,
+    accesstoken
   }
 }
 
-export function invalidateSubreddit(subreddit) {
+export function receiveLoginPosts(json) {
   return {
-    type: INVALIDATE_SUBREDDIT ,
-    subreddit
+    type: RECEIVE_LOGIN_POSTS,
+    posts: json,
   }
 }
 
-function requestPosts(subreddit) {
-  return {
-    type: REQUEST_POSTS,
-    subreddit
-  }
-}
-
-function receivePosts(subreddit, json) {
-  return {
-    type: RECEIVE_POSTS,
-    subreddit,
-    posts: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
-  }
-}
-
-function fetchPosts(subreddit) {
+export function fetchLoginPosts(accesstoken) {
   return dispatch => {
-    dispatch(requestPosts(subreddit))
-    return fetch(`http://localhost:8081/api/${subreddit}.json`)
+    dispatch(requestLoginPosts(accesstoken))
+    return fetch('http://localhost:8081/api/v1/accesstoken', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "accesstoken=" + accesstoken
+      })
       .then(response => response.json())
-      .then(json => dispatch(receivePosts(subreddit, json)))
+      .then(json => dispatch(receiveLoginPosts(json)))
   }
 }
 
-function shouldFetchPosts(state, subreddit) {
-  const posts = state.postsBySubreddit[subreddit]
-  if (!posts) {
-    return true
-  } else if (posts.isFetching) {
-    return false
-  } else {
-    return posts.didInvalidate
+export function requestUserGet(user) {
+  return {
+    type: REQUEST_USER_GET,
+    user
   }
 }
 
-export function fetchPostsIfNeeded(subreddit) {
-  return (dispatch, getState) => {
-    if (shouldFetchPosts(getState(), subreddit)) {
-      return dispatch(fetchPosts(subreddit))
-    }
+export function receiveUserGet(json) {
+  return {
+    type: RECEIVE_USER_GET,
+    posts: json
   }
 }
+
+export function fetchUserGet(user) {
+  return dispatch => {
+    dispatch(requestUserGet(user))
+    return fetch('http://localhost:8081/api/v1/user/' + user)
+              .then(response => response.json())
+              .then(json => dispatch(receiveUserGet(json)))
+  }
+}
+

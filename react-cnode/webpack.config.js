@@ -2,6 +2,7 @@ module.exports= {
   entry: "./index.js",
   output: {
     path: __dirname,
+    publicPath: '/',
     filename: 'bundle.js'
   },
   module: {
@@ -11,7 +12,7 @@ module.exports= {
         loader: 'babel-loader',
         exclude:/node_modules/,
         query: {
-          presets: ['react', 'es2015']
+          presets: ['react', 'es2015', 'stage-0']
         }
       },
       {
@@ -28,10 +29,10 @@ module.exports= {
   devServer: {
     historyApiFallback: true,
     proxy: {
-      '/api': {
-        target: 'https://www.reddit.com',
+      '/api/v1': {
+        target: 'https://cnodejs.org',
         secure: false,
-        pathRewrite: {'^/api' : '/r'},
+        pathRewrite: {'^/api/v1' : '/api/v1'},
         changeOrigin: true
       }
     }
