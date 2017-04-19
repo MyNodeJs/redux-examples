@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 class Header extends Component {
 	render() {
@@ -11,8 +11,8 @@ class Header extends Component {
 					<div className="content">登录</div>
 				</header>
 			</div>
-		)
+		);
 	}
 }
 
-export default Header
+export default Header;

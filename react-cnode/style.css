@@ -28,6 +28,9 @@ a:active {
 	color: #333;
 	text-decoration: underline;
 }
+h2 {
+	font-size: 18px;
+}
 .signin-header {
 	display: flex;
 	align-items: center;
@@ -134,4 +137,90 @@ a:active {
 }
 .user-index .tab-nav div.current {
 	border-bottom: 3px solid #80bd01;
+}
+.user-index .list li {
+	display: flex;
+	border-bottom: 1px solid #eee;
+	height: 28px;
+	line-height: 28px;
+	padding: 5px 10px;
+}
+.user-index .list li a {
+	flex: 1;
+	text-decoration: none;
+}
+.hide {
+	display: none;
+}
+.logout header {
+	display: flex;
+	text-align: center;
+	height: 50px;
+	background: #80bd01; 
+	align-items: center;
+	color: #fff;
+}
+.logout header .content {
+	flex: 1;
+}
+.logout .container {
+	display: flex; 
+	justify-content: center; 
+	align-items: center;
+	height: 400px;
+}
+.logout .container .center {
+	display: flex;
+	justify-content: center;
+}
+.logout .container .center input {
+	background: #e63e3e;
+	display: block;
+	border: none;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 5px;
+}
+.topic header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50px;
+	background: #80bd01;
+	color: #fff;
+}
+.topic header h2 {
+	flex: 1;
+	text-align: center;
+}
+.topic header .icon {
+	cursor: pointer;
+}
+.topic .user {
+	display: flex;
+	padding: 10px;
+}
+.topic .user .icon {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-size: 40px 40px;
+}
+.topic .user .data {
+	flex: 1;
+	margin-left: 5px;
+}
+.topic h2.tit2 {
+	padding: 10px;
+	background: #eee;
+}
+.topic .content {
+	padding: 10px;
+}
+.topic .tit3 {
+	font-size: 14px;
+	font-weight: normal;
+	border-left: 8px solid #80bd01;
+	background: #eee;
+	padding: 5px 10px;
 }
