@@ -11,10 +11,6 @@ class ReList extends Component {
 	constructor(props) {
 		super(props)
 
-		this.state = {
-			showReply: false
-		}
-
 		this.handleDianZhan = this.handleDianZhan.bind(this)
 		this.handleReply = this.handleReply.bind(this)
 	}
@@ -59,7 +55,9 @@ class ReList extends Component {
 									}} className="zhan iconfont icon-dianzan"><em>{reply.ups.length}</em></div>
 									<div onClick={(e) => {
 										this.handleReply()
-									}} className="reply iconfont icon-huifu"></div>
+									}} className="reply iconfont icon-huifu">
+										
+									</div>
 								</div>
 							</div>
 						</li>
