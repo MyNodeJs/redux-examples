@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { fetchTopicGet } from '../actions'
 import DataLoad from './DataLoad'
+import ReList from './ReList'
 
 class Header extends Component {
 	constructor(props) {
@@ -40,9 +41,7 @@ class Article extends Component {
 				<h2 className="tit2">{this.props.title}</h2>
 				<div className="content" dangerouslySetInnerHTML={{__html: this.props.content}}></div>
 				<h3 className="tit3">共{this.props.reply_count}条回复</h3>
-				<ul className="re-list">
-					
-				</ul>
+				<ReList replies={this.props.replies} author_id={this.props.author_id}></ReList>
 			</div>
 		)
 	}
@@ -94,7 +93,8 @@ function mapStateToProps (state) {
 		title: state.topic.title,
 		content: state.topic.content,
 		isFetching: state.topic.isFetching,
-		replies: state.topic.replies
+		replies: state.topic.replies,
+		author_id: state.topic.author_id
 	}
 }
 

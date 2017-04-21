@@ -7,6 +7,8 @@ export const RECEIVE_USER_GET = "RECEIVE_USER_GET";
 export const LOGOUT = "LOGOUT";
 export const REQUEST_TOPIC_GET = 'REQUEST_TOPIC_GET'
 export const RECEIVE_TOPIC_GET = 'RECEIVE_TOPIC_GET'
+export const REQUEST_UPS_POSTS = 'REQUEST_UPS_POSTS'
+export const RECEIVE_UPS_POSTS = 'RECEIVE_UPS_POSTS'
 
 export function requestLoginPosts(accesstoken) {
   return {
@@ -86,5 +88,35 @@ export function fetchTopicGet(id, mdrender = true, accesstoken) {
     return fetch("http://localhost:8081/api/v1/topic/" + id)
       .then(response => response.json())
       .then(json => dispatch(receiveTopicGet(json)));
+  };
+}
+
+export function requestUpsPosts() {
+  return {
+    type: REQUEST_UPS_POSTS
+  }
+}
+
+export function receiveUpsPosts(json, user_id, index) {
+  return {
+    type: RECEIVE_UPS_POSTS,
+    user_id, 
+    posts: json,
+    index
+  }
+}
+
+export function fetchUpsPosts(id, accesstoken, user_id, index) {
+  return dispatch => {
+    dispatch(requestUpsPosts());
+    return fetch(`http://localhost:8081/api/v1/reply/${id}/ups`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: "accesstoken=" + accesstoken
+    })
+      .then(response => response.json())
+      .then(json => dispatch(receiveUpsPosts(json, user_id, index)));
   };
 }

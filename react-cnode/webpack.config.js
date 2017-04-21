@@ -23,6 +23,11 @@ module.exports = {
       {
         test: /\.(png|jpe?g)$/,
         loader: "url-loader?limit=40000"
+      },
+      {
+        test: /\.(eot|woff|svg|ttf|woff2|gif|appcache)(\?|$)/,
+        exclude: /^node_modules$/,
+        loader: 'file-loader'
       }
     ]
   },
