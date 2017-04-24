@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { browserHistory } from 'react-router'
 import { isLogin } from './common'
+import { getData } from './database'
 import {
   REQUEST_LOGIN_POSTS,
   RECEIVE_LOGIN_POSTS,
@@ -10,7 +11,11 @@ import {
   REQUEST_TOPIC_GET,
   RECEIVE_TOPIC_GET,
   REQUEST_UPS_POSTS,
-  RECEIVE_UPS_POSTS
+  RECEIVE_UPS_POSTS,
+  REQUEST_TOPIC_CREATE_POSTS,
+  RECEIVE_TOPIC_CREATE_POSTS,
+  REQUEST_MY_MESSAGES_GET,
+  RECEIVE_MY_MESSAGES_GET
 } from "./actions";
 
 function user(
@@ -82,6 +87,28 @@ function replies(state, action) {
         browserHistory.push({pathname: '/signin'})
       }
       return arr
+    case RECEIVE_TOPIC_CREATE_POSTS:
+      let topicCreateArr = state.slice()
+      if (isLogin()) {
+        if(action.posts.success) {
+          topicCreateArr.push({
+            id: action.posts.reply_id,
+            author: {
+              loginname: getData('user').loginname,
+              avatar_url: getData('user').avatar_url
+            },
+            content: action.content,
+            ups: [],
+            create_at: new Date(),
+            reply_id: null,
+            is_uped: false
+          })
+        }
+
+        return topicCreateArr
+      } else {
+        browserHistory.push({pathname: '/signin'})
+      }
     default:
       return state
   }
@@ -110,8 +137,46 @@ function topic(
         
       })
     case RECEIVE_UPS_POSTS:
+    case RECEIVE_TOPIC_CREATE_POSTS:
       return Object.assign({}, state, {
         replies: replies(state.replies, action)
+      })
+    default:
+      return state;
+  }
+}
+
+function myMessages(state={
+  isFetching: false,
+  posts: {data: {has_read_messages: []}}
+}, action) {
+  switch(action.type) {
+    case REQUEST_MY_MESSAGES_GET:
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+    case RECEIVE_MY_MESSAGES_GET:
+      return Object.assign({}, state, {
+        isFetching: false,
+        posts: action.posts
+      })
+    default:
+      return state;
+  }
+}
+
+function topics(state={
+    isFetching: false
+}, action) {
+  switch(action.type) {
+    case REQUEST_MY_MESSAGES_GET:
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+    case RECEIVE_MY_MESSAGES_GET:
+      return Object.assign({}, state, {
+        isFetching: false,
+        posts: action.posts
       })
     default:
       return state;
@@ -121,7 +186,9 @@ function topic(
 const rootReducer = combineReducers({
   user,
   userView,
-  topic
+  topic,
+  myMessages,
+  topics
 });
 
 export default rootReducer;

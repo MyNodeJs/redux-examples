@@ -291,3 +291,65 @@ h2 {
 	font-style: normal;
 	font-size: 14px;
 }
+.reply-box {
+	padding: 10px;
+}
+.reply-box .text {
+	margin-bottom: 10px;
+}
+.reply-box .text textarea {
+	box-sizing: border-box;
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    line-height: 24px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    resize: none;
+}
+.reply-box .btn-box {
+	display: flex;
+	justify-content: flex-end;
+}
+.reply-box .btn-box input {
+	padding: 5px 30px;
+    line-height: 24px;
+    border-radius: 5px;
+    border: 1px solid #6fa401;
+    font-size: 14px;
+    color: #fff;
+    background: #80bd01;
+}
+.myMessages header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #80bd01;
+	height: 50px;
+}
+.myMessages header h2 {
+	font-size: 18px;
+	font-weight: normal;
+	color: #fff;
+}
+.user-headimg {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-size: 40px 40px;
+}
+.myMessages ul li {
+	display: flex;
+	padding: 10px;
+}
+.myMessages ul li .righter {
+	flex: 1;
+	margin-left: 5px;
+}
+.myMessages ul li .righter .name time {
+	margin-left: 5px;
+}
+.myMessages ul li .righter .reply a {
+	color: #80bd01;
+}

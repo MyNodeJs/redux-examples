@@ -7,6 +7,7 @@ import Signin from "../components/Signin";
 import UserView from "../components/UserView";
 import Logout from "../components/Logout";
 import Topic from "../components/Topic";
+import MyMessages from '../components/MyMessages'
 
 const store = configureStore();
 
@@ -20,6 +21,7 @@ export default class Root extends Component {
           <Route path="/logout" component={Logout} />
           <Route path="/user/:loginname" component={UserView} />
           <Route path="/topic/:id" component={Topic} />
+          <Route path="/my/messages" component={MyMessages} />
         </Router>
       </Provider>
     );

@@ -38,11 +38,11 @@ class Signin extends Component {
 									function(res) {
 										setData('user', {
 											accesstoken: this.props.accesstoken,
-											loginname: res.posts.loginname
+											loginname: res.posts.loginname,
+											avatar_url: res.posts.avatar_url
 										})
 										this.context.router.push({
-											pathname: "/user/" +
-												res.posts.loginname
+											pathname: "/"
 										});
 									}.bind(this)
 								);

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchTopicGet } from '../actions'
 import DataLoad from './DataLoad'
 import ReList from './ReList'
+import ReplyBox from "./ReplyBox";
 
 class Header extends Component {
 	constructor(props) {
@@ -41,7 +42,8 @@ class Article extends Component {
 				<h2 className="tit2">{this.props.title}</h2>
 				<div className="content" dangerouslySetInnerHTML={{__html: this.props.content}}></div>
 				<h3 className="tit3">共{this.props.reply_count}条回复</h3>
-				<ReList replies={this.props.replies} author_id={this.props.author_id}></ReList>
+				<ReList dispatch={this.props.dispatch} topicid={this.props.topicid} replies={this.props.replies} author_id={this.props.author_id} tab={this.props.tab} title={this.props.title}></ReList>
+				<ReplyBox replyall={'true'} dispatch={this.props.dispatch} topicid={this.props.topicid} loginname={this.props.loginname} tab={this.props.tab} title={this.props.title}></ReplyBox>
 			</div>
 		)
 	}
@@ -72,7 +74,7 @@ class Topic extends Component {
 			loginname = this.props.author.loginname
 		}
 
-		let main = this.props.isFetching ? <DataLoad /> : <Article {...this.props} url={url} loginname={loginname} formatTime={this.formatTime}></Article>
+		let main = this.props.isFetching ? <DataLoad /> : <Article {...this.props} url={url} loginname={loginname} formatTime={this.formatTime} dispatch={this.props.dispatch} topicid={this.props.topicid} tab={this.props.tab} title={this.props.title}></Article>
 
 		return (
 			<div className="topic">
@@ -94,7 +96,8 @@ function mapStateToProps (state) {
 		content: state.topic.content,
 		isFetching: state.topic.isFetching,
 		replies: state.topic.replies,
-		author_id: state.topic.author_id
+		author_id: state.topic.author_id,
+		topicid: state.topic.id
 	}
 }
 
