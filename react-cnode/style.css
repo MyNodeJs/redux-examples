@@ -243,6 +243,9 @@ h2 {
 .topic .content {
 	padding: 10px;
 }
+.topic .content img {
+	max-width: 100%;
+}
 .topic .tit3 {
 	font-size: 14px;
 	font-weight: normal;
@@ -352,4 +355,85 @@ h2 {
 }
 .myMessages ul li .righter .reply a {
 	color: #80bd01;
+}
+.flex {
+	display: flex;
+}
+.async-app ul li {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+}
+.async-app ul li h3 {
+	flex: 1;
+}
+.async-app .bottom .con {
+	flex: 1;
+}
+.user-headimg {
+	width: 40px;
+	height: 40px;
+	background-size: 40px 40px;
+}
+.async-app .bottom .name {
+	flex: 1;
+}
+.async-app .bottom time.first {
+	flex: 1;
+}
+.async-app ul li a:hover {
+	text-decoration: none;
+}
+.topic-create header {
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	background: #80bd01;
+	height: 50px;
+}
+.topic-create header h2 {
+	display: flex;
+	justify-content: center;
+	flex: 1;
+}
+.topic-create header .icon {
+	margin-right: 5px;
+	cursor: pointer;
+}
+.topic-create header .iconfont {
+	font-size: 24px;
+}
+.topic-create .content .item {
+	padding: 10px;
+	border-bottom: 1px solid #eee;
+	color: #444;
+}
+.topic-create .content .item select {
+	display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #222;
+    border: none;
+    outline: none;
+}
+.topic-create .content input {
+	box-sizing: border-box;
+    width: 100%;
+    line-height: 28px;
+    font-size: 13px;
+    border: none;
+    outline: none;
+}
+.topic-create .content textarea {
+	box-sizing: border-box;
+    width: 100%;
+    height: 300px;
+    line-height: 24px;
+    font-size: 13px;
+    resize: none;
+    border: none;
+    outline: none;
 }

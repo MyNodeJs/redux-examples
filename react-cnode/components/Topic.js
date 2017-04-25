@@ -1,26 +1,28 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux'
-import { fetchTopicGet } from '../actions'
-import DataLoad from './DataLoad'
-import ReList from './ReList'
+import { connect } from "react-redux";
+import { fetchTopicGet } from "../actions";
+import DataLoad from "./DataLoad";
+import ReList from "./ReList";
 import ReplyBox from "./ReplyBox";
 
 class Header extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 
-		this.handleClick = this.handleClick.bind(this)
+		this.handleClick = this.handleClick.bind(this);
 	}
 	handleClick() {
-		this.context.router.goBack()
+		this.context.router.goBack();
 	}
 	render() {
 		return (
 			<header>
-				<div onClick={this.handleClick} className="icon">&lt;</div>
+				<div onClick={this.handleClick} className="icon">
+					<i className="iconfont icon-fanhui"></i>
+				</div>
 				<h2>详情</h2>
 			</header>
-		)
+		);
 	}
 }
 
@@ -33,59 +35,100 @@ class Article extends Component {
 		return (
 			<div>
 				<div className="user">
-					<div style={{backgroundImage: `url(${this.props.url})`}} className="icon"></div>
+					<div
+						style={{ backgroundImage: `url(${this.props.url})` }}
+						className="icon"
+					/>
 					<div className="data">
-						<div>{this.props.loginname}{' '}{this.props.formatTime(this.props.create_at)}</div>
-						<div>阅读:{this.props.visit_count}{' '}回复:{this.props.reply_count}</div>
+						<div>
+							{this.props.loginname}
+							{" "}
+							{this.props.formatTime(this.props.create_at)}
+						</div>
+						<div>
+							阅读:
+							{this.props.visit_count}
+							{" "}
+							回复:
+							{this.props.reply_count}
+						</div>
 					</div>
 				</div>
 				<h2 className="tit2">{this.props.title}</h2>
-				<div className="content" dangerouslySetInnerHTML={{__html: this.props.content}}></div>
+				<div
+					className="content"
+					dangerouslySetInnerHTML={{ __html: this.props.content }}
+				/>
 				<h3 className="tit3">共{this.props.reply_count}条回复</h3>
-				<ReList dispatch={this.props.dispatch} topicid={this.props.topicid} replies={this.props.replies} author_id={this.props.author_id} tab={this.props.tab} title={this.props.title}></ReList>
-				<ReplyBox replyall={'true'} dispatch={this.props.dispatch} topicid={this.props.topicid} loginname={this.props.loginname} tab={this.props.tab} title={this.props.title}></ReplyBox>
+				<ReList
+					dispatch={this.props.dispatch}
+					topicid={this.props.topicid}
+					replies={this.props.replies}
+					author_id={this.props.author_id}
+					tab={this.props.tab}
+					title={this.props.title}
+				/>
+				<ReplyBox
+					replyall={"true"}
+					dispatch={this.props.dispatch}
+					topicid={this.props.topicid}
+					loginname={this.props.loginname}
+					tab={this.props.tab}
+					title={this.props.title}
+				/>
 			</div>
-		)
+		);
 	}
 }
 
 class Topic extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 	}
 	formatTime(time) {
 		return (time + "").substring(0, 10);
 	}
 	componentDidMount() {
-		const { dispatch, params } = this.props
+		const { dispatch, params } = this.props;
 
 		dispatch(fetchTopicGet(params.id)).then(() => {
-			this.loaded = true
+			this.loaded = true;
 
-			this.forceUpdate()
-		})
+			this.forceUpdate();
+		});
 	}
 	render() {
-		let url = ''
-		let loginname = ''
+		let url = "";
+		let loginname = "";
 
-		if(this.loaded) {
-			url = this.props.author.avatar_url
-			loginname = this.props.author.loginname
+		if (this.loaded) {
+			url = this.props.author.avatar_url;
+			loginname = this.props.author.loginname;
 		}
 
-		let main = this.props.isFetching ? <DataLoad /> : <Article {...this.props} url={url} loginname={loginname} formatTime={this.formatTime} dispatch={this.props.dispatch} topicid={this.props.topicid} tab={this.props.tab} title={this.props.title}></Article>
+		let main = this.props.isFetching
+			? <DataLoad />
+			: <Article
+					{...this.props}
+					url={url}
+					loginname={loginname}
+					formatTime={this.formatTime}
+					dispatch={this.props.dispatch}
+					topicid={this.props.topicid}
+					tab={this.props.tab}
+					title={this.props.title}
+				/>;
 
 		return (
 			<div className="topic">
-				<Header></Header>
+				<Header />
 				{main}
 			</div>
 		);
 	}
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
 	return {
 		tab: state.topic.tab,
 		reply_count: state.topic.reply_count,
@@ -98,7 +141,7 @@ function mapStateToProps (state) {
 		replies: state.topic.replies,
 		author_id: state.topic.author_id,
 		topicid: state.topic.id
-	}
+	};
 }
 
-export default connect(mapStateToProps)(Topic)
+export default connect(mapStateToProps)(Topic);
