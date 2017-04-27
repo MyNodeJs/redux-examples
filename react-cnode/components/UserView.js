@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router";
 import $ from "webpack-zepto";
 import { fetchUserGet } from "../actions";
+import Footer from './Footer'
 
 class Header extends Component {
 	constructor(props) {
@@ -127,6 +128,7 @@ class UserView extends Component {
 						</ul>
 					</div>
 				</div>
+				<Footer index="3" />
 			</div>
 		);
 	}

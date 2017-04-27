@@ -3,21 +3,25 @@ import { connect } from "react-redux";
 import { getData } from "../database";
 import { fetchTopicPublishPosts } from "../actions";
 import { isLogin } from "../common";
+import Footer from './Footer'
 
 class Header extends Component {
 	render() {
 		return (
-			<header className="flex">
-				<h2>发表主题</h2>
-				<div
-					onClick={() => {
-						this.props.onPublish();
-					}}
-					className="icon"
-				>
-					<i className="iconfont icon-fabu" />
-				</div>
-			</header>
+			<div>
+				<header className="flex">
+					<h2>发表主题</h2>
+					<div
+						onClick={() => {
+							this.props.onPublish();
+						}}
+						className="icon"
+					>
+						<i className="iconfont icon-fabu" />
+					</div>
+				</header>
+				<Footer index="1" />
+			</div>
 		);
 	}
 }

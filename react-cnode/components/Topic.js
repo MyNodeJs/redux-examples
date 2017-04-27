@@ -56,7 +56,7 @@ class Article extends Component {
 				</div>
 				<h2 className="tit2">{this.props.title}</h2>
 				<div
-					className="content"
+					className="content markdown-body"
 					dangerouslySetInnerHTML={{ __html: this.props.content }}
 				/>
 				<h3 className="tit3">共{this.props.reply_count}条回复</h3>

@@ -5,6 +5,7 @@ import { fetchMyMessagesGet } from '../actions'
 import { getData } from '../database'
 import { isLogin } from '../common'
 import FormatTime from "../common/FormatTime";
+import Footer from './Footer'
 
 class Header extends Component {
 	render() {
@@ -56,6 +57,7 @@ class MyMessages extends Component {
 						})}
 					</ul>
 				</div>
+				<Footer index="2" />
 			</div>
 		)
 	}
