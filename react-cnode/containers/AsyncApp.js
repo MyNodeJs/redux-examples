@@ -4,7 +4,6 @@ import { Link } from "react-router";
 import { fetchTopicsGet } from "../actions";
 import { FormatTime } from "../common";
 import Footer from '../components/Footer'
-import IScroll from 'iscroll'
 
 class Nav extends Component {
 	render() {
@@ -35,19 +34,7 @@ class Nav extends Component {
 class AsyncApp extends Component {
 	componentDidMount() {
 		this.props.dispatch(fetchTopicsGet()).then(() => {
-			console.log(this.refs['caption'])
-			this.myScroll = new IScroll(this.refs['caption'],{
-				scrollbars: true,
-    mouseWheel: true,
-    interactiveScrollbars: true,
-    shrinkScrollbars: 'scale',
-    fadeScrollbars: false,
-    checkDOMChanges: true
-			}); 
-			var doSoming = function() {
-				console.log('sfsf')
-			}
-			this.myScroll.on('scrollEnd', doSoming);
+			
 		})
 	}
 	componentWillReceiveProps(nextProps) {

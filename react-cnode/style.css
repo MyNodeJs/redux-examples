@@ -17,7 +17,8 @@ body {
     font-size:16px;font-style:normal;
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
-    -moz-osx-font-smoothing: grayscale;}
+    -moz-osx-font-smoothing: grayscale;
+}
 .icon-huifu:before { content: "\e608"; }
 .icon-job:before { content: "\e602"; }
 .icon-fanhui:before { content: "\e607"; }
@@ -1215,4 +1216,8 @@ footer.common-footer nav ul li a i {
 
 .markdown-body hr {
   border-bottom-color: #eee;
+}
+.signin-header .fanhui {
+	color: #fff;
+	cursor: pointer;
 }
