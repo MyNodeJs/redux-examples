@@ -1,4 +1,4 @@
-#react-cnode
+# react-cnode
 
 学习了一段时间rect，基本写完了一个项目。
 项目用到的技术栈有`react redux react-router es6,7 fetch flex
