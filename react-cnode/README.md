@@ -1,7 +1,7 @@
 #react-cnode
 
 学习了一段时间rect，基本写完了一个项目。
-项目用到的技术栈有`react redux react-router es6,7 fetch
+项目用到的技术栈有`react redux react-router es6,7 fetch flex
 从一开始不知道从哪儿下手到现在基本完成一个项目，经历了很多困难，在这里要感谢一位大牛，参考了他的项目才能比较顺利的完成了，他项目地址是
 <a href="http://react-china.org/t/webpack-react-react-router-redux-less-flex-css-es6-react-cnode/6332/117"></a>
 
